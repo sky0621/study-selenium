@@ -11,7 +11,7 @@ public class SampleScript {
 
         WebDriver driver = new FirefoxDriver();
         driver.get("http://example.selenium.jp/reserveApp");
-        driver.findElement(By.id("guestname")).sendKeys("サンプルユーザ");
+        driver.findElement(By.id("guestname")).sendKeys("繧ｵ繝ｳ繝励Ν繝ｦ繝ｼ繧ｶ");
         driver.findElement(By.id("goto_next")).click();
         driver.quit();
     }

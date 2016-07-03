@@ -11,7 +11,7 @@ public class ChromeTester {
 
     public static void main(String... args) {
 
-        System.setProperty("webdriver.chrome.driver", "C:\\FHS\\usr\\local\\SeleniumWebDriver\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", args[0] + "\\chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.get("http://example.selenium.jp/reserveApp");
         driver.findElement(By.id("guestname")).sendKeys("サンプルユーザ");

@@ -36,9 +36,9 @@ public class ReserveInputPage implements IfReservePage {
 
     public void setBreakfast(boolean on) {
         if(on) {
-            click("breakfast_on");
+            clickById("breakfast_on");
         } else {
-            click("breakfast_off");
+            clickById("breakfast_off");
         }
     }
 
@@ -55,7 +55,7 @@ public class ReserveInputPage implements IfReservePage {
     }
 
     public ReserveConfirmPage goToNext() {
-        click("goto_next");
+        clickById("goto_next");
         return new ReserveConfirmPage(driver);
     }
 

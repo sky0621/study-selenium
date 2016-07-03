@@ -11,7 +11,7 @@ public class IETester {
 
     public static void main(String... args) {
 
-        System.setProperty("webdriver.ie.driver", "C:\\FHS\\usr\\local\\SeleniumWebDriver\\IEDriverServer.exe");
+        System.setProperty("webdriver.ie.driver", args[0] + "\\IEDriverServer64.exe");
         WebDriver driver = new InternetExplorerDriver();
         driver.get("http://example.selenium.jp/reserveApp");
         driver.findElement(By.id("guestname")).sendKeys("サンプルユーザ");

@@ -1,7 +1,9 @@
 package sample.pageobjectpattern.po;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import static org.openqa.selenium.By.id;
 import static org.openqa.selenium.By.name;
 
 /**
@@ -22,12 +24,16 @@ interface IfReservePage {
         getDriver().findElement(name(name)).sendKeys(value);
     };
 
-    default String getText(String name) {
-        return getDriver().findElement(name(name)).getText();
+    default String getTextById(String id) {
+        return getDriver().findElement(id(id)).getText();
     };
 
     default void click(String name) {
         getDriver().findElement(name(name)).click();
+    }
+
+    default void clickById(String id) {
+        getDriver().findElement(id(id)).click();
     }
 
     default void clickIfSelected(String name) {

@@ -48,11 +48,14 @@ public class PageObjectSampleTest {
                 Integer.toString(nextSaturday.get(Calendar.MONTH) + 1),
                 Integer.toString(nextSaturday.get(Calendar.DATE))
         );
-
+        inputPage.setReserveTerm("1");
+        inputPage.setHeadCount("2");
+        inputPage.setBreakfast(true);
+        inputPage.setEarlyCheckInPlan(true);
         inputPage.setGuestName("サンプルユーザ");
 
         // 予約内容確認ページ
-        ReserveConfirmPage confirmPage = new ReserveConfirmPage(driver);
+        ReserveConfirmPage confirmPage = inputPage.goToNext();
         assertThat(confirmPage.getPrice(), is("21500"));
         confirmPage.commit();
     }

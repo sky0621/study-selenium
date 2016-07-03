@@ -21,11 +21,11 @@ public class ReserveConfirmPage implements IfReservePage {
     }
 
     public String getPrice() {
-        return getText("price");
+        return getTextById("price");
     }
 
     public void commit() {
-        click("commit");
+        clickById("commit");
     }
 
 }

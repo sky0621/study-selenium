@@ -2,6 +2,9 @@ package sample.pageobjectpattern.po;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 /**
  * Created by SS on 2016/07/02.
@@ -9,6 +12,39 @@ import org.openqa.selenium.WebDriver;
 public class ReserveInputPage implements IfReservePage {
 
     private WebDriver driver;
+
+    @FindBy(name = "reserve_y")
+    private WebElement reserveYear = null;
+
+    @FindBy(name = "reserve_m")
+    private WebElement reserveMonth = null;
+
+    @FindBy(name = "reserve_d")
+    private WebElement reserveDay = null;
+
+    @FindBy(name = "reserve_t")
+    private WebElement reserveTerm = null;
+
+    @FindBy(name = "hc")
+    private WebElement headCount = null;
+
+    @FindBy(id = "breakfast_on")
+    private WebElement breakfastOn = null;
+
+    @FindBy(id = "breakfast_off")
+    private WebElement breakfastOff = null;
+
+    @FindBy(name = "plan_a")
+    private WebElement earlyCheckInPlan = null;
+
+    @FindBy(name = "plan_b")
+    private WebElement sightseeingPlan = null;
+
+    @FindBy(name = "gname")
+    private WebElement guestName = null;
+
+    @FindBy(id = "goto_next")
+    private WebElement goToNextButton = null;
 
     public ReserveInputPage(WebDriver driver) {
         this.driver = driver;
@@ -21,42 +57,38 @@ public class ReserveInputPage implements IfReservePage {
     }
 
     public void setReserveData(String year, String month, String day) {
-        replaceVales("reserve_y", year);
-        replaceVales("reserve_m", month);
-        replaceVales("reserve_d", day);
+        replaceVales(reserveYear, year);
+        replaceVales(reserveMonth, month);
+        replaceVales(reserveDay, day);
     }
 
     public void setReserveTerm(String term) {
-        replaceVales("reserve_t", term);
+        replaceVales(reserveTerm, term);
     }
 
     public void setHeadCount(String hc) {
-        replaceVales("hc", hc);
+        replaceVales(headCount, hc);
     }
 
     public void setBreakfast(boolean on) {
-        if(on) {
-            clickById("breakfast_on");
-        } else {
-            clickById("breakfast_off");
-        }
+        clickByOnOff(on, breakfastOn, breakfastOff);
     }
 
     public void setEarlyCheckInPlan(boolean checked) {
-        clickIfSelected("plan_a");
+        clickIfSelected(earlyCheckInPlan);
     }
 
     public void setSightseeingPlan(boolean checked) {
-        clickIfSelected("plan_b");
+        clickIfSelected(sightseeingPlan);
     }
 
     public void setGuestName(String name) {
-        replaceVales("gname", name);
+        replaceVales(guestName, name);
     }
 
     public ReserveConfirmPage goToNext() {
-        clickById("goto_next");
-        return new ReserveConfirmPage(driver);
+        click(goToNextButton);
+        return PageFactory.initElements(driver, ReserveConfirmPage.class);
     }
 
 }

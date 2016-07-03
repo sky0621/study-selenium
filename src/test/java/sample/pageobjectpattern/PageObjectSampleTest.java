@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.PageFactory;
 import sample.pageobjectpattern.po.ReserveConfirmPage;
 import sample.pageobjectpattern.po.ReserveInputPage;
 
@@ -41,7 +42,7 @@ public class PageObjectSampleTest {
     public void 宿泊予約が成功すること() {
         // 予約情報入力ページ
         driver.get("http://example.selenium.jp/reserveApp");
-        ReserveInputPage inputPage = new ReserveInputPage(driver);
+        ReserveInputPage inputPage = PageFactory.initElements(driver, ReserveInputPage.class);
         Calendar nextSaturday = nextSaturday();
         inputPage.setReserveData(
                 Integer.toString(nextSaturday.get(Calendar.YEAR)),

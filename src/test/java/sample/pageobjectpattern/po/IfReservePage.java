@@ -1,7 +1,7 @@
 package sample.pageobjectpattern.po;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import static org.openqa.selenium.By.id;
 import static org.openqa.selenium.By.name;
@@ -19,26 +19,30 @@ interface IfReservePage {
         }
     }
 
-    default void replaceVales(String name, String value) {
-        getDriver().findElement(name(name)).clear();
-        getDriver().findElement(name(name)).sendKeys(value);
-    };
-
-    default String getTextById(String id) {
-        return getDriver().findElement(id(id)).getText();
-    };
-
-    default void click(String name) {
-        getDriver().findElement(name(name)).click();
+    default void replaceVales(WebElement webElement, String value) {
+        webElement.clear();
+        webElement.sendKeys(value);
     }
 
-    default void clickById(String id) {
-        getDriver().findElement(id(id)).click();
+    default String getText(WebElement webElement) {
+        return webElement.getText();
     }
 
-    default void clickIfSelected(String name) {
-        if(!getDriver().findElement(name(name)).isSelected()){
-            click(name);
+    default void click(WebElement webElement) {
+        webElement.click();
+    }
+
+    default void clickIfSelected(WebElement webElement) {
+        if (!webElement.isSelected()) {
+            click(webElement);
+        }
+    }
+
+    default void clickByOnOff(boolean on, WebElement webElementForOn, WebElement webElementForOff) {
+        if(on) {
+            click(webElementForOn);
+        } else {
+            click(webElementForOff);
         }
     }
 

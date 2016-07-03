@@ -2,6 +2,8 @@ package sample.pageobjectpattern.po;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 /**
  * Created by SS on 2016/07/02.
@@ -9,6 +11,12 @@ import org.openqa.selenium.WebDriver;
 public class ReserveConfirmPage implements IfReservePage {
 
     private WebDriver driver;
+
+    @FindBy(id = "price")
+    private WebElement priceText = null;
+
+    @FindBy(id = "commit")
+    private WebElement commitButton = null;
 
     public ReserveConfirmPage(WebDriver driver) {
         this.driver = driver;
@@ -21,11 +29,11 @@ public class ReserveConfirmPage implements IfReservePage {
     }
 
     public String getPrice() {
-        return getTextById("price");
+        return getText(priceText);
     }
 
     public void commit() {
-        clickById("commit");
+        click(commitButton);
     }
 
 }
